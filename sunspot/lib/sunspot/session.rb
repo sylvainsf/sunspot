@@ -241,6 +241,8 @@ module Sunspot
       @connection ||=
         self.class.connection_class.connect(:url          => config.solr.url,
                                             :read_timeout => config.solr.read_timeout,
+                                            # This requires sylvainsf/rsolr to work until they add support to the upstream gem
+                                            :retry_503 => 5,
                                             :open_timeout => config.solr.open_timeout)
     end
 
